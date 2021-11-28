@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreImageManipulationRequest;
+use App\Http\Requests\ResizeImageRequest;
 use App\Http\Requests\UpdateImageManipulationRequest;
 use App\Models\ImageManipulation;
 
@@ -25,9 +25,11 @@ class ImageManipulationController extends Controller
      * @param  \App\Http\Requests\StoreImageManipulationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ResizeImageRequest $request)
+    public function resize(ResizeImageRequest $request)
     {
-        //
+        /** @var @var UploadedFile|string  $image */
+        $image = $request->all()['image'];
+        var_dump($image);
     }
 
     /**

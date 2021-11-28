@@ -13,7 +13,7 @@ class ResizeImageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,19 @@ class ResizeImageRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'image' => ['required'],
+            'w'=> ['required', 'regex:/^\d+(\.\d+)?%?$/'], // Width 50, 50%
+            'h'=>'egex:/^\d+(\.\d+)?%?$/',
+            'album_id' => 'exists:App\Models\Album,id'
         ];
+
+        $image = $this->image ?? false;
+        if ($image instanceof \Illuminate\Http\UploadedFile ) 
+            $rules['image'][] = 'image';
+        else
+            $rules['image'][] = 'url';
+        
+        return $rules;
     }
 }
