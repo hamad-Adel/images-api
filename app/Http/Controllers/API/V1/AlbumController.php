@@ -29,7 +29,8 @@ class AlbumController extends Controller
      */
     public function store(StoreAlbumRequest $request)
     {
-        return Album::create($request->all());
+        // Create new Album resource and pass the original model to it
+        return new AlbumResource(Album::create($request->all()));
     }
 
     /**
@@ -40,7 +41,7 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        return $album;
+        return new AlbumResource($album);
     }
 
     /**
@@ -52,8 +53,10 @@ class AlbumController extends Controller
      */
     public function update(UpdateAlbumRequest $request, Album $album)
     {
-        $album =  $album->update($request->all());
-        return $album;
+        $album->update($request->all());
+
+        return new AlbumResource($album);
+  
     }
 
     /**

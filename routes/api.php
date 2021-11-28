@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\V1\{AlbumController, ImageManipulationController};
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::prefix('v1')->group(function() {
-    Route::apiResource('album', \App\Http\Controllers\API\V1\AlbumController::class);
+    Route::apiResource('album', AlbumController::class);
+    Route::get('image', [ImageManipulationController::class, 'index']);
+
 });
