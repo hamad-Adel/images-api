@@ -1,0 +1,11 @@
+php artisan make:controller AlbumController --model=Album --requests --api
+
+
+Transformation layer that set between your elquont models and json representation
+
+php artisan make:resource V1\\AlbumResource
+
+
+// Image Manipulation
+
+php artisan make:controller ImageManipulationController --model=ImageManipulation -- requests --api --resource
